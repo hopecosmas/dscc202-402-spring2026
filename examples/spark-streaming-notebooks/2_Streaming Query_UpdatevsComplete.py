@@ -307,6 +307,9 @@ display(hourly_totals)
 
 # COMMAND ----------
 
+# DBTITLE 1,Task 3.1: Product Sales with Complete Mode
+from pyspark.sql.functions import avg
+
 # Create streaming DataFrame (no watermark needed for complete mode)
 streaming_df_complete = (spark.readStream
     .format("delta")
@@ -319,7 +322,7 @@ product_sales = (streaming_df_complete
     .agg(
         count("*").alias("transaction_count"),
         _sum("totalPrice").alias("total_revenue"),
-        (spark_sql.functions.avg("totalPrice")).alias("avg_transaction_value")
+        avg("totalPrice").alias("avg_transaction_value")
     )
     .orderBy(col("total_revenue").desc())
 )

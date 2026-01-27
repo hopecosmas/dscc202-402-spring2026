@@ -48,7 +48,7 @@ working_dir = "/Volumes/streaming_examples_catalog/concurrent_streaming/workspac
 checkpoint_dir = f"{working_dir}/checkpoints"
 
 # Control variable: Set to False to run streams sequentially
-RUN_CONCURRENT = True
+RUN_CONCURRENT = False
 
 print(f"Working directory: {working_dir}")
 print(f"Checkpoint directory: {checkpoint_dir}")
